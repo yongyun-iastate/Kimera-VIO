@@ -2,14 +2,18 @@
 # Backend modality for regular VIO
 # 0: Structureless factors only, 4: SPR pipeline
 backend_modality: 0
+
 #INITIALIZATION PARAMETERS
 autoInitialize: 1
+initialization_from_imu_type: 1
+initialize_on_detected_acceleration: 1
+imu_accel_std_dev_when_stationary: 0.1
 roundOnAutoInitialize: 0
 initialPositionSigma: 1e-05
 initialRollPitchSigma: 0.174533 # 10.0/180.0*M_PI
 initialYawSigma: 0.00174533 # 0.1/180.0*M_PI
 initialVelocitySigma: 0.001
-initialAccBiasSigma: 0.1
+initialAccBiasSigma: 0.1  # TODO(nathan) check this
 initialGyroBiasSigma: 0.01
 
 # VISION PARAMETERS ###########################################################
@@ -37,7 +41,7 @@ landmarkDistanceThreshold: 10
 #   * is smaller than this threshold after triangulation, otherwise result is
 #   * flagged as degenerate.
 #   */
-outlierRejection: 3
+outlierRejection: 3  # TODO(nathan) consider 4 or 5
 # ///< threshold to decide whether to re-triangulate
 retriangulationThreshold: 0.001
 
@@ -80,7 +84,6 @@ useDogLeg: 0
 #   * flagged as degenerate.
 #   */
 #  double dynamicOutlierRejectionThreshold;
-
 # Method used to generate the initial guess for the pose of the keyframe
 # PoseGuessSource:
 #   IMU = 0
